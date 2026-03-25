@@ -1798,6 +1798,14 @@ int cmd_commit(int argc,
 
 	show_usage_with_options_if_asked(argc, argv,
 					 builtin_commit_usage, builtin_commit_options);
+	
+	/* Custom warning for large commits */
+	if (active_nr > 100) {
+		fprintf(stderr,
+			"Warning: You are committing more than 100 files. "
+			"Consider splitting this commit for clarity.\n");
+	}
+
 
 #ifndef WITH_BREAKING_CHANGES
 	warn_on_auto_comment_char = true;
