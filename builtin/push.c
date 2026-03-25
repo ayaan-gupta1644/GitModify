@@ -661,6 +661,15 @@ int cmd_push(int argc,
 	for_each_string_list_item(item, push_options)
 		if (strchr(item->string, '\n'))
 			die(_("push options must not have new line characters"));
+	if (repo && !strcmp(repo, "origin")) {
+    // Check if we are trying to push to a protected branch
+    // This is a simplified example of logic you can inject
+    	printf("Wait! Are you sure you want to push to origin? [y/N]: ");
+    	char response = getchar();
+    	if (response != 'y' && response != 'Y') {
+        	die("Push aborted by user safety check.");
+    	}
+	}
 
 	rc = do_push(flags, push_options, remote);
 	string_list_clear(&push_options_cmdline, 0);
