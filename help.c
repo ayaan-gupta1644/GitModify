@@ -840,7 +840,7 @@ int cmd_version(int argc, const char **argv, const char *prefix, struct reposito
 	argc = parse_options(argc, argv, prefix, options, usage, 0);
 
 	get_version_info(&buf, build_options);
-	printf("%s", buf.buf);
+	printf("%s (Modified by Ayaan)", buf.buf);
 
 	strbuf_release(&buf);
 
